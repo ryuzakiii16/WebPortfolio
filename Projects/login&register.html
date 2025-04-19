@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #4cae4c;
+        }
+        
+        .switch-form {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .switch-form a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        
+        .switch-form a:hover {
+            text-decoration: underline;
+        }
+        
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .captcha-code {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
+            margin-right: 10px;
+            user-select: none;
+        }
+        
+        .refresh-captcha {
+            cursor: pointer;
+            color: #337ab7;
+        }
+        
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-form">
+            <h2>Login</h2>
+            <form id="login">
+                <div class="form-group">
+                    <label for="login-username">Username</label>
+                    <input type="text" id="login-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch-form">
+                Don't have an account? <a href="#" id="show-register">Register</a>
+            </div>
+        </div>
+        
+        <!-- Register Form -->
+        <div id="register-form" class="hidden">
+            <h2>Register</h2>
+            <form id="register">
+                <div class="form-group">
+                    <label for="register-username">Username</label>
+                    <input type="text" id="register-username" required>
+                    <div id="username-error" class="error hidden"></div>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" required>
+                    <div id="password-error" class="error hidden"></div>
+                </div>
+                <div class="form-group">
+                    <label>Captcha Verification</label>
+                    <div class="captcha-container">
+                        <div id="captcha-code" class="captcha-code"></div>
+                        <span class="refresh-captcha" id="refresh-captcha">↻ Refresh</span>
+                    </div>
+                    <input type="text" id="captcha-input" placeholder="Enter the captcha" required>
+                    <div id="captcha-error" class="error hidden"></div>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div class="switch-form">
+                Already have an account? <a href="#" id="show-login">Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const registerFormElement = document.getElementById('register');
+        const loginFormElement = document.getElementById('login');
+        const captchaCodeElement = document.getElementById('captcha-code');
+        const refreshCaptcha = document.getElementById('refresh-captcha');
+        const captchaInput = document.getElementById('captcha-input');
+        const usernameError = document.getElementById('username-error');
+        const passwordError = document.getElementById('password-error');
+        const captchaError = document.getElementById('captcha-error');
+        
+        // Generate random captcha
+        function generateCaptcha() {
+            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return captcha;
+        }
+        
+        let currentCaptcha = generateCaptcha();
+        captchaCodeElement.textContent = currentCaptcha;
+        
+        // Refresh captcha
+        refreshCaptcha.addEventListener('click', function() {
+            currentCaptcha = generateCaptcha();
+            captchaCodeElement.textContent = currentCaptcha;
+            captchaInput.value = '';
+            captchaError.classList.add('hidden');
+        });
+        
+        // Switch between login and register forms
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            // Generate new captcha when showing register form
+            currentCaptcha = generateCaptcha();
+            captchaCodeElement.textContent = currentCaptcha;
+        });
+        
+        showLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        });
+        
+        // Register form validation
+        registerFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            usernameError.classList.add('hidden');
+            passwordError.classList.add('hidden');
+            captchaError.classList.add('hidden');
+            
+            const username = document.getElementById('register-username').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm-password').value;
+            const userCaptcha = captchaInput.value;
+            
+            let isValid = true;
+            
+            // Username validation (at least 4 characters)
+            if (username.length < 4) {
+                usernameError.textContent = 'Username must be at least 4 characters';
+                usernameError.classList.remove('hidden');
+                isValid = false;
+            }
+            
+            // Password validation
+            if (password !== confirmPassword) {
+                passwordError.textContent = 'Passwords do not match';
+                passwordError.classList.remove('hidden');
+                isValid = false;
+            } else if (password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters';
+                passwordError.classList.remove('hidden');
+                isValid = false;
+            }
+            
+            // Captcha validation
+            if (userCaptcha !== currentCaptcha) {
+                captchaError.textContent = 'Invalid captcha';
+                captchaError.classList.remove('hidden');
+                isValid = false;
+            }
+            
+            if (isValid) {
+                // In a real application, you would send this data to a server
+                alert('Registration successful! You can now login.');
+                registerForm.classList.add('hidden');
+                loginForm.classList.remove('hidden');
+                registerFormElement.reset();
+            }
+        });
+        
+        // Login form submission
+        loginFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            // In a real application, you would validate against a database
+            alert('Login functionality would validate credentials here');
+            // For demo purposes, just show a message
+            console.log('Login attempted with:', username, password);
+        });
+    </script>
+</body>
+</html>
