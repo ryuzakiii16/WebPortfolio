@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Dhale Ericson</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dark-theme">
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MY PORTFOLIO</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+
+            <h2 class="section-title">My Projects</h2>
+            
+            <div class="projects-grid">
+                <div class="card">
+                    <i class="fas fa-id-badge" style="font-size: 2.5rem; color: var(--primary);"></i>
+                    <h3>Profile Card</h3>
+                    <p style="margin: 15px 0; color: var(--text-light);">A sleek, modern user interface project.</p>
+                    <a href="Projects/profile card.html" class="card-link">View Demo</a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-briefcase" style="font-size: 2.5rem; color: var(--primary);"></i>
+                    <h3>1st Portfolio</h3>
+                    <p style="margin: 15px 0; color: var(--text-light);">My initial personal website design.</p>
+                    <a href="Projects/1stportfolio.html" class="card-link">View Demo</a>
+                </div>
+
+                <div class="card">
+                    <i class="fas fa-user-shield" style="font-size: 2.5rem; color: var(--primary);"></i>
+                    <h3>Auth UI</h3>
+                    <p style="margin: 15px 0; color: var(--text-light);">Responsive Login and Registration system.</p>
+                    <a href="Projects/login&register.html" class="card-link">View Demo</a>
+                </div>
+            </div>
+
+        </div> </section> <script>
+        const btn = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.replace('dark-theme', 'light-theme');
+            btn.querySelector('i').className = 'fas fa-sun';
+        }
+        btn.onclick = () => {
+            const isDark = document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle('light-theme', !isDark);
+            btn.querySelector('i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        };
+    </script>
+</body>
+</html>

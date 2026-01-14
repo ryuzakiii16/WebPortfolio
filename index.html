@@ -3,169 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Dhale Ericson | Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    <!-- Sticky Navigation Bar -->
+<body class="dark-theme">
+
     <nav class="navbar">
-        <div class="container">
-            <a href="" class="logo">MyPortfolio</a>
+        <div class="container nav-content">
+            <a href="index.html" class="logo">MY PORTFOLIO</a>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#quizzes">Quizzes</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+                <div class="hamburger"><div></div><div></div><div></div></div>
             </div>
         </div>
     </nav>
 
-   <!-- Home Section -->
-<section id="home" class="home-section">
-    <div class="hero-content">
-        <div class="hero-text">
-            <h1 class="hero-title">
-                <span class="title-line">Hello, I'm</span>
-                <span class="title-name">Dhale Ericson</span>
-                <span class="title-tagline">CvSU - Silang Campus</span>
-            </h1>
-            <p class="hero-subtitle">3rd Year | Silang, Cavite | 21 Yrs Old</p>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">Explore My Work</a>
-                <a href="#contact" class="btn btn-secondary">Let's Connect :></a>
+    <header class="hero-section">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <span class="badge">CvSU - Silang Student</span>
+                <h1>Hello, I'm <span class="highlight">Dhale Ericson Cabardo</span></h1>
+                <p>4th Year IT Student | Building the Future of Web</p>
+                <div class="hero-btns">
+                    <a href="projects.html" class="btn btn-primary">Explore My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Let's Connect :></a>
+                </div>
             </div>
-        </div>
-        <div class="hero-image">
-            <div class="image-wrapper">
-                <img src="Images/me.jpg" alt="Dhale Ericson - Web Developer" class="profile-image">
-                <div class="tech-icons">
-                    <div class="icon" style="--i:1"><i class="fab fa-html5"></i></div>
-                    <div class="icon" style="--i:2"><i class="fab fa-css3-alt"></i></div>
-                    <div class="icon" style="--i:3"><i class="fab fa-js"></i></div>
-                    <div class="icon" style="--i:4"><i class="fab fa-react"></i></div>
-                    <div class="icon" style="--i:5"><i class="fab fa-node"></i></div>
+            <div class="hero-visual">
+                <div class="image-wrapper">
+                    <img src="Images/me.jpg" alt="Dhale Ericson" class="profile-img">
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </header>
 
-    <!-- About Me Section -->
-<section id="about" class="section about-section">
-    <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Hi, I'm Cabardo Dhale</h3>
-                <p>Hello, I'm Dhale Ericson Awit Cabardo, currently a 3rd-year student at Cavite State University - Silang Campus, pursuing a Bachelor of Science in Information Technology.</p>
-                <p>When I'm not coding or studying, I enjoy watching K-dramas, movies, and anime, reading manhwa/manga, or working out at the gym.</p>
-                <a href="About/CabardoDhale_Resume.pdf" download class="btn">Download CV</a>
-            </div>
-            <div class="about-image">
-                <img src="Images/photo_6294303765636959235_y.jpg" alt="Profile Picture">
-            </div>
-        </div>
-    </div>
-</section>
-
-    <section id="quizzes" class="section quizzes-section">
-        <div class="container">
-            <h2>My Quizzes</h2>
-            <div class="grid-container">
-                <div class="quiz-item">
-                    <img src="Quizzes/photo_6273684173109707188_y.jpg" alt="Posttest1">
-                    <div class="hover-content">
-                        <p>Post Test#1</p>
-                        <p>Score:14</p>
-                    </div>
-                </div>
-                <div class="quiz-item">
-                    <img src="Quizzes/photo_6273684173109707189_y.jpg" alt="Posttest2">
-                    <div class="hover-content">
-                        <p>Post Test#2</p>
-                        <p>Score:18</p>
-                    </div>
-                </div>
-                <div class="quiz-item">
-                    <img src="Quizzes/photo_6273684173109707190_y.jpg" alt="Posttest3">
-                    <div class="hover-content">
-                        <p>Post Test#3</p>
-                        <p>Score:17</p>
-                    </div>
-                </div>
-                <div class="quiz-item">
-                    <img src="Quizzes/photo_6273684173109707191_y.jpg" alt="Posttest4">
-                    <div class="hover-content">
-                        <p>Post Test#4</p>
-                        <p>Score:19</p>
-                    </div>
-                </div>
-
-                <div class="quiz-item">
-                    <img src="Quizzes/ptest5.jpg" alt="Posttest4">
-                    <div class="hover-content">
-                        <p>Post Test#4</p>
-                        <p>Score:18</p>
-                    </div>
-                </div>
-
-                <div class="quiz-item">
-                    <img src="Quizzes/lquiz.jpg" alt="Posttest4">
-                    <div class="hover-content">
-                        <p>Long Quiz Midterm</p>
-                        <p>Score:22</p>
-                    </div>
-                </div>
-
-                <div class="quiz-item">
-                    <img src="Quizzes/midterm.jpg" alt="Posttest4">
-                    <div class="hover-content">
-                        <p>Midterm Exam</p>
-                        <p>Score:22</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
-        <div class="container">
-            <h2>My Projects</h2>
-            <div class="grid-container">
-                <div class="project-item">
-                    <h3>Profile Card</h3>
-                    <div class="hover-content">
-                        <a href="Projects/profile card.html" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <h3>Portfolio</h3>
-                    <div class="hover-content">
-                        <a href="Projects/1stportfolio.html" class="btn">View Project</a>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <h3>Simple Login & Register</h3>
-                    <div class="hover-content">
-                        <a href="Projects/login&register.html" class="btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <h2>Get In Touch</h2>
+            <h2 class="section-title">Get In Touch</h2>
             <form class="contact-form">
                 <div class="form-group">
                     <input type="text" placeholder="Your Name" required>
@@ -174,14 +55,13 @@
                     <input type="email" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Your Message" required></textarea>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -197,27 +77,56 @@
                         <a href="https://web.facebook.com/ryuzakiii16"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/_ryuzaakiii/#"><i class="fab fa-instagram"></i></a>
                         <a href="https://github.com/ryuzakiii16"><i class="fab fa-github"></i></a>
-                       
-                     
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#quizzes">Quizzes</a></li>
-                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="projects.html">Projects</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 My Portfolio - Cabardo. All Rights Reserved.</p>
+                <p>&copy; 2026 My Portfolio - Cabardo. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        const themeBtn = document.getElementById('theme-toggle');
+const body = document.body;
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    body.classList.add(savedTheme);
+    updateIcon(savedTheme);
+}
+
+themeBtn.addEventListener('click', () => {
+    if (body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+        updateIcon('dark-theme');
+    } else {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        localStorage.setItem('theme', 'light-theme');
+        updateIcon('light-theme');
+    }
+});
+
+function updateIcon(theme) {
+    const icon = themeBtn.querySelector('i');
+    if (theme === 'light-theme') {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
+    }
+}
+    </script>
 </body>
 </html>
