@@ -8,22 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body class="dark-theme">
-
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="index.html" class="logo">MY PORTFOLIO</a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="nav-actions">
-                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
-                <div class="hamburger"><div></div><div></div><div></div></div>
+   <nav class="navbar">
+    <div class="container nav-content">
+        <a href="index.html" class="logo">MY PORTFOLIO</a>
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            <div class="hamburger" id="hamburger">
+                <div></div><div></div><div></div>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <header class="hero-section">
         <div class="container hero-grid">
@@ -96,37 +97,66 @@
     </footer>
 
     <script>
-        const themeBtn = document.getElementById('theme-toggle');
+       const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+const themeBtn = document.getElementById('theme-toggle');
 const body = document.body;
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    body.classList.add(savedTheme);
-    updateIcon(savedTheme);
-}
+// --- Theme Logic ---
+const updateIcon = (theme) => {
+    const icon = themeBtn.querySelector('i');
+    // Checks if the string contains 'light' to show sun, otherwise moon
+    icon.className = theme.includes('light') ? 'fas fa-sun' : 'fas fa-moon';
+};
 
 themeBtn.addEventListener('click', () => {
-    if (body.classList.contains('light-theme')) {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark-theme');
-        updateIcon('dark-theme');
-    } else {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
+    if (body.classList.contains('dark-theme')) {
+        body.classList.replace('dark-theme', 'light-theme');
         localStorage.setItem('theme', 'light-theme');
         updateIcon('light-theme');
+    } else {
+        body.classList.replace('light-theme', 'dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+        updateIcon('dark-theme');
     }
 });
 
-function updateIcon(theme) {
-    const icon = themeBtn.querySelector('i');
-    if (theme === 'light-theme') {
-        icon.className = 'fas fa-sun';
-    } else {
-        icon.className = 'fas fa-moon';
-    }
+// Load saved theme on Page Load
+const savedTheme = localStorage.getItem('theme') || 'dark-theme';
+body.className = savedTheme;
+updateIcon(savedTheme);
+
+
+// --- Navigation / Burger Logic ---
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const lines = hamburger.querySelectorAll('div');
+        
+        if (navMenu.classList.contains('active')) {
+            lines[0].style.transform = "rotate(45deg) translate(5px, 6px)";
+            lines[1].style.opacity = "0";
+            lines[2].style.transform = "rotate(-45deg) translate(5px, -6px)";
+        } else {
+            lines[0].style.transform = "none";
+            lines[1].style.opacity = "1";
+            lines[2].style.transform = "none";
+        }
+    });
 }
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        const lines = hamburger.querySelectorAll('div');
+        if(lines.length > 0) {
+            lines[0].style.transform = "none"; 
+            lines[1].style.opacity = "1"; 
+            lines[2].style.transform = "none";
+        }
+    });
+});
     </script>
 </body>
 </html>
