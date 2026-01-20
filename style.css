@@ -77,6 +77,8 @@ input, textarea { width: 100%; padding: 15px; border-radius: 10px; border: 1px s
 .btn-primary { background: var(--primary); color: white; border: none; }
 .btn-secondary { border: 1px solid var(--border); color: var(--text); }
 .card-link { display: inline-block; margin-top: 20px; padding: 10px 25px; background: var(--primary); color: #000 !important; text-decoration: none; border-radius: 8px; font-weight: 700; }
+.cv-button { background: #4054b1; color: white; padding: 14px 30px; border-radius: 12px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; border: none; font-size: 16px; margin-top: 15px; }
+.cv-button i { font-size: 18px; }
 
 /* --- FOOTER (Restored) --- */
 .footer { background: var(--footer-grad); padding: 80px 0 30px; border-top: 1px solid var(--border); margin-top: 50px; }
